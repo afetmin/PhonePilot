@@ -1,0 +1,25 @@
+{
+  "device_id": "REPLACE_WITH_DISCOVERED_DEVICE_ID",
+  "goal": "只读浏览小红书，收集10条不同的上海唐镇出租或转租笔记。保留原文证据，缺失字段不猜；不私信、评论、点赞、关注、收藏或向他人分享。",
+  "subgoals": [
+    {
+      "app": "com.xingin.xhs",
+      "goal": "进入搜索页，输入给定关键词并搜索，停在笔记搜索结果列表，保持全部/笔记分类。",
+      "input_text": "上海 唐镇 租房",
+      "completion": {"kind": "agent", "package_name": "com.xingin.xhs"}
+    },
+    {
+      "app": "com.xingin.xhs",
+      "goal": "连续浏览不同房源笔记，优先近期且有报价和具体位置的出租/转租帖，跳过求租、出售、已租出和重复帖。读标题、作者、正文和日期，必要时展开或滚动正文；有可见链接时保留，不向他人分享。记录租金、位置、户型、费用和入住信息。读完返回列表找下一条，使用内层列表滚动，避免分类pager。",
+      "collect": true,
+      "completion": {
+        "kind": "items",
+        "package_name": "com.xingin.xhs",
+        "min_items": 10,
+        "required_fields": ["title", "author", "rent", "location"],
+        "review_every": 5
+      }
+    }
+  ],
+  "options": {"max_actions": 120, "max_seconds": 300}
+}

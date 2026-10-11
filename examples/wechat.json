@@ -1,0 +1,23 @@
+{
+  "device_id": "DEVICE_ID",
+  "goal": "在微信向已明确指定的测试联系人发送一条测试消息，并确认新增的本人消息。",
+  "subgoals": [
+    {
+      "goal": "找到并进入测试联系人的对话；重名时先核实身份。完成时应处在此人的聊天页。",
+      "app": "com.tencent.mm",
+      "input_text": "测试联系人",
+      "completion": {"kind": "agent"}
+    },
+    {
+      "goal": "给当前已核实的测试联系人发送准确的测试消息，确认新增的本人消息。",
+      "app": "com.tencent.mm",
+      "input_text": "Phone Use Runner 测试消息 001",
+      "commit_selector": {"text": "发送", "action": "tap"},
+      "completion": {
+        "kind": "message",
+        "message": "Phone Use Runner 测试消息 001",
+        "recipient": {"text": "测试联系人", "editable": false}
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "device_id": "DEVICE_ID",
+  "goal": "在小红书搜索降噪耳机通勤评价，采集至少三屏可见搜索结果，交给上层总结。",
+  "subgoals": [
+    {
+      "goal": "打开小红书搜索降噪耳机通勤评价，进入对应的搜索结果页。",
+      "app": "com.xingin.xhs",
+      "input_text": "降噪耳机 通勤 评价",
+      "completion": {"kind": "agent"}
+    },
+    {
+      "goal": "读取当前搜索结果的可见文字，向下滚动并收集至少三屏不同结果。先 READ 再滚动。",
+      "app": "com.xingin.xhs",
+      "collect": true,
+      "completion": {"kind": "records", "min_pages": 3, "package_name": "com.xingin.xhs"}
+    }
+  ]
+}

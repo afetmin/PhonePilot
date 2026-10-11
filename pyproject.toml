@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "phone-use-runner"
+version = "0.1.0"
+description = "Task-level phone automation with a minimal Android bridge, Jev, and a planning agent"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = ["httpx[http2,socks]>=0.28,<1", "mcp>=1.20,<2", "pydantic>=2.10,<3", "python-dotenv>=1,<2"]
+
+[project.optional-dependencies]
+dev = ["ruff>=0.11"]
+
+[project.scripts]
+phone-use = "phone_use_runner.cli:main"
+phone-use-mcp = "phone_use_runner.mcp_server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/phone_use_runner"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"THIRD_PARTY_NOTICES.md" = "phone_use_runner/THIRD_PARTY_NOTICES.md"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 110
+exclude = ["src/phone_use_runner/vendor"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
